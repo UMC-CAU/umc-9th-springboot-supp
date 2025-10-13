@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Table(name="Alarm")
-public class Alarm {
+public class Alarm { // 알림설정
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int alarm_id;

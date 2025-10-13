@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Table(name="users")
-public class Member {
+public class Member { //멤버관리
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;

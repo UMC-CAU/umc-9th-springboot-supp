@@ -12,7 +12,7 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Table(name="Store")
-public class Store {
+public class Store { // 가게 별도
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int store_id;

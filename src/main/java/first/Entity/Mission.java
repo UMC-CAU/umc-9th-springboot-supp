@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Table(name="Mission")
-public class Mission {
+public class Mission { // 갸안 마숀
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int mission_id;

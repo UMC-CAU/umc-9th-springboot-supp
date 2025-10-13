@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Table(name="MemberMission")
-public class MemberMission {
+public class MemberMission { //멤버 미션 매핑
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;

@@ -12,7 +12,7 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Table(name="Map")
-public class Map {
+public class Map { // 상위로 지도 지정
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int map_id;
