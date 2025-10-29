@@ -26,9 +26,7 @@ public class Member { //멤버관리
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<MemberMission> memberMission =new ArrayList<>();
 
-    @OneToMany(mappedBy = "Member", cascade = CascadeType.ALL)
-    private List<Member> member =new ArrayList<>();
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Alarm> alarms = new ArrayList<>();
 
-    @OneToMany(mappedBy = "Member", cascade = CascadeType.ALL)
-    private List<Member> memAlarm =new ArrayList<>();
 }

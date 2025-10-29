@@ -21,6 +21,7 @@ public class Mission { // 갸안 마숀
 
     private String title;
     private String description;
+    private String address;
 
     @OneToMany(mappedBy = "mission", cascade = CascadeType.REMOVE)
     private List<MemberMission> missions=new ArrayList<>();
