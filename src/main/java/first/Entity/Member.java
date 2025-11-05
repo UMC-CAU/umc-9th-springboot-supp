@@ -29,4 +29,6 @@ public class Member { //멤버관리
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Alarm> alarms = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviews = new ArrayList<>();
 }

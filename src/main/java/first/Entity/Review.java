@@ -4,8 +4,8 @@ import lombok.*;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,20 +14,24 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Table(name="Store")
-public class Store { // 가게 별도
+@Table(name="Review")
+public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long store_id;
+
+    private long review_id;
+
+    private Double rating;
+
+    private String content;
+
+    private LocalDateTime createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="map_id")
-    private Map map;
+    @JoinColumn(name = "store_id")
+    private Store store;
 
-    private String name;
-    private String address;
-    private String description;
-
-    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Review> reviews = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
 }
