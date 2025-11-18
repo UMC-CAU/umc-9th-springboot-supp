@@ -1,8 +1,8 @@
 package Repository;
 
-import first.Entity.Member;
-import first.Entity.MemberMission;
-import first.Entity.State;
+import Entity.Member;
+import Entity.MemberMission;
+import Entity.State;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

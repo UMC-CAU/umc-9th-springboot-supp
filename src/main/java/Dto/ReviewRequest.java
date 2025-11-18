@@ -6,4 +6,5 @@ import lombok.Getter;
 public class ReviewRequest {
     private Long store_id;
     private double rating;
+    private String comment;
 }

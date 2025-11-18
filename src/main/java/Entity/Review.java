@@ -1,4 +1,4 @@
-package first.Entity;
+package Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -6,8 +6,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Builder

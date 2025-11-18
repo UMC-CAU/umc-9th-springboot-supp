@@ -1,4 +1,4 @@
-package first.Entity;
+package Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
