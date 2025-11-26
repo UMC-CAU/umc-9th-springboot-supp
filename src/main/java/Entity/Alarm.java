@@ -1,27 +1,26 @@
-package first.Entity;
+package Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.*;
 
 @Entity
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Table(name="Store")
-public class Store {
+@Table(name="Alarm")
+public class Alarm { // 알림설정
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int store_id;
+    private int alarm_id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="map_id")
-    private Map map;
-
-    private String name;
-    private String address;
+    private String title;
     private String description;
+
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="member")
+    private Member member;
 }
+

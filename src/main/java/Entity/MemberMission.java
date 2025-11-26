@@ -1,6 +1,8 @@
-package first.Entity;
+package Entity;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Builder
@@ -8,7 +10,7 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Table(name="MemberMission")
-public class MemberMission {
+public class MemberMission { //멤버 미션 매핑
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
@@ -20,4 +22,12 @@ public class MemberMission {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="mission_id", nullable=false)
     private Mission mission;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private State state;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
 }

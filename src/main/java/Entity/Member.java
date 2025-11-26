@@ -1,4 +1,4 @@
-package first.Entity;
+package Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Table(name="users")
-public class Member {
+public class Member { //멤버관리
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
@@ -26,9 +26,9 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<MemberMission> memberMission =new ArrayList<>();
 
-    @OneToMany(mappedBy = "Member", cascade = CascadeType.ALL)
-    private List<Member> member =new ArrayList<>();
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Alarm> alarms = new ArrayList<>();
 
-    @OneToMany(mappedBy = "Member", cascade = CascadeType.ALL)
-    private List<Member> memAlarm =new ArrayList<>();
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviews = new ArrayList<>();
 }

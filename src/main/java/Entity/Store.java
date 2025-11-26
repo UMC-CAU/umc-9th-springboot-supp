@@ -1,4 +1,4 @@
-package first.Entity;
+package Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,15 +13,20 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Table(name="Mission")
-public class Mission {
+@Table(name="Store")
+public class Store { // 가게 별도
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int mission_id;
+    private long store_id;
 
-    private String title;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="map_id")
+    private Map map;
+
+    private String name;
+    private String address;
     private String description;
 
-    @OneToMany(mappedBy = "mission", cascade = CascadeType.REMOVE)
-    private List<MemberMission> missions=new ArrayList<>();
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviews = new ArrayList<>();
 }
