@@ -10,10 +10,13 @@ import org.example.Entity.MemberMission;
 import org.example.Entity.Mission;
 import org.example.Entity.State;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;       // ✅ 추가
+import org.springframework.data.domain.Pageable;   // ✅ 추가
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;                        // ✅ 추가
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +33,6 @@ public class MemberMissionService {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 멤버입니다. id=" + request.getMemberId()));
         Mission mission = missionRepository.findById(request.getMissionId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 미션입니다. id=" + request.getMissionId()));
-
 
         memberMissionRepository.findByMemberAndMission(member, mission)
                 .ifPresent(mm -> {
@@ -55,5 +57,25 @@ public class MemberMissionService {
                 .state(saved.getState())
                 .updatedAt(saved.getUpdatedAt())
                 .build();
+    }
+
+    @Transactional(readOnly = true)
+    public Page<MemberMissionResponse> getMyInProgressMissions(Long memberId, Pageable pageable) {
+
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 멤버입니다. id=" + memberId));
+
+        List<State> states = List.of(State.ACTIVE);
+
+        Page<MemberMission> page =
+                memberMissionRepository.findByMemberAndStateIn(member, states, pageable);
+
+        return page.map(mm -> MemberMissionResponse.builder()
+                .memberMissionId(mm.getId())
+                .memberId(mm.getMember().getId())
+                .missionId(mm.getMission().getMission_id())
+                .state(mm.getState())
+                .updatedAt(mm.getUpdatedAt())
+                .build());
     }
 }

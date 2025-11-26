@@ -50,11 +50,12 @@ public class ReviewService {
 
         Review saved = reviewRepository.save(review);
 
-        return new ReviewResponse(
-                saved.getReview_id(),
-                saved.getRating(),
-                saved.getContent(),
-                saved.getCreatedAt()
-        );
+        return ReviewResponse.builder()
+                .reviewId(saved.getReview_id())
+                .rating(saved.getRating())
+                .content(saved.getContent())
+                .createdAt(saved.getCreatedAt())
+                .build();
     }
 }
+
